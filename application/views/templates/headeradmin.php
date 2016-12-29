@@ -27,9 +27,6 @@
     <!-- Bootstrap -->
     <script src="<?php echo base_url('assets/vendors/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
-
   </head>
 
   <body class="nav-md footer_fixed">

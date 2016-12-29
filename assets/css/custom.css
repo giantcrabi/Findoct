@@ -626,10 +626,6 @@ a:visited {
   color: #E7E7E7;
   font-weight: 500; }
 
-.nav.side-menu li:hover,
-.nav.side-menu li.active {
-  background-color: #800000; }
-
 .nav.child_menu li li:hover,
 .nav.child_menu li li.active {
   background: none; }

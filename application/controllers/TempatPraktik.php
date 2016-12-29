@@ -4,7 +4,6 @@ class TempatPraktik extends CI_Controller {
         function __construct()
         {
                 parent::__construct();
-                $this->load->helper('url_helper');
                 $this->load->library('pagination');
                 $this->load->model('Tempat_Praktik_model');
         }
@@ -110,5 +109,26 @@ class TempatPraktik extends CI_Controller {
                 // $this->load->view('doctors/index',$data); 
 
                 }
+        }
+
+        public function add()
+        {
+            $this->form_validation->set_rules('name', 'Nama Tempat Praktek', 'required|trim');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+            $this->form_validation->set_rules('kota', 'Kota', 'required|trim');
+            $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+            $this->form_validation->set_rules('kodepos', 'Kode Pos', 'trim');
+            $this->form_validation->set_rules('foto', 'foto', 'trim');
+
+            if ($this->form_validation->run() != FALSE) {
+                $this->Tempat_Praktik_model->post_new_tpraktek();
+                $this->session->set_flashdata('information', 'Data berhasil dimasukkan');
+            }
+            $data['sidebar'] = 'templates/Sidebar';
+            $data['title'] = 'FINDOCT';
+            $data['subtitle'] = 'Add Tempat Praktek';
+            $this->load->view('templates/headeradmin', $data);
+            $this->load->view('praktek/add', $data);
+            $this->load->view('templates/footeradmin');
         }
 }

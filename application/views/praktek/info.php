@@ -46,7 +46,7 @@
             <th>Rute</th>
             <!-- <th>Rute</th> -->
         </thead>
-        <?php foreach ($doktor as $d) { ?>
+        <?php if (!empty($doktor)) { foreach ($doktor as $d) { ?>
         <tbody>
         <tr>
             <td class="text-left"><?php echo anchor('Doctors/info/'.$d['Email'], $d['Nama'].', '.$d['Gelar']);?></td>
@@ -58,6 +58,6 @@
             <td class="text-left"><a href="<?php echo base_url('maps'.'/'.$d['Gelar'].'/'.$d['Nama'].'/'.$d['IDTPraktek']);?>">Lihat Rute</a></td>      
         </tr>
         </tbody>
-        <?php } ?>
+        <?php } } ?>
     </table>
 </div>

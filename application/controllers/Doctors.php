@@ -4,7 +4,6 @@ class Doctors extends CI_Controller {
         function __construct()
         {
                 parent::__construct();
-                $this->load->helper('url_helper');
                 $this->load->library('pagination');
 
                 // $this->load->helper('url');
@@ -167,10 +166,21 @@ class Doctors extends CI_Controller {
 
         public function add()
         {
+            $this->form_validation->set_rules('email', 'Email', 'required|trim');
+            $this->form_validation->set_rules('name', 'Nama Dokter', 'required|trim');
+            $this->form_validation->set_rules('gelar', 'Gelar', 'required|trim');
+            $this->form_validation->set_rules('foto', 'Foto', 'trim');
+
+            if ($this->form_validation->run() != FALSE) {
+                $this->Doctors_model->post_new_doctor();
+                $this->session->set_flashdata('information', 'Data berhasil dimasukkan');
+            }
             $data['sidebar'] = 'templates/Sidebar';
             $data['title'] = 'FINDOCT';
+            $data['subtitle'] = 'Add Dokter';
             $this->load->view('templates/headeradmin', $data);
-            $this->load->view('templates/footeradmin', $data);
+            $this->load->view('doctors/add', $data);
+            $this->load->view('templates/footeradmin');
         }
         
 }

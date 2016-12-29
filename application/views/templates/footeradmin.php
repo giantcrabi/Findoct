@@ -18,6 +18,8 @@
     <script src="<?php echo base_url('assets/vendors/nprogress/nprogress.js'); ?>"></script>
     <!-- jQuery custom content scroller -->
     <script src="<?php echo base_url('assets/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js'); ?>"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
     
   </body>
 </html>

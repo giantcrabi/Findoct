@@ -22,7 +22,7 @@
             <th>Jumat</th>
             <th>Rute</th>
         </thead>
-        <?php foreach ($dokter_tpraktek as $d) { ?>
+        <?php if (!empty($dokter_tpraktek)) { foreach ($dokter_tpraktek as $d) { ?>
         <tbody>
         <tr>
             <td class="text-left"><?php echo anchor('TempatPraktik/info/'.$d['NamaTPraktek'],$d['NamaTPraktek']);?></td>
@@ -34,6 +34,6 @@
             <td class="text-left"><a href="<?php echo base_url('maps'.'/'.$dokter[0]['Gelar'].'/'.$dokter[0]['Nama'].'/'.$d['IDTPraktek']);?>">Lihat Rute</a></td>
         </tr>
         </tbody>
-        <?php } ?>
+        <?php } } ?>
     </table>
 </div>

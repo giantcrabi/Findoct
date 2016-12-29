@@ -5,8 +5,28 @@ class Tempat_Praktik_model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-                $this->load->database();
+        $this->load->database();
 	}
+
+	public function post_new_tpraktek()
+    {
+    	$foto = $this->input->post('foto',TRUE);
+
+    	if ($foto == "") {
+    		$foto = "noimg.jpg";
+    	}
+
+    	$data = array(
+		    'NamaTPraktek' => $this->input->post('name',TRUE),
+		    'Alamat' => $this->input->post('alamat',TRUE),
+        	'Kota' => $this->input->post('kota',TRUE),
+        	'Provinsi' => $this->input->post('provinsi',TRUE),
+        	'KodePos' => $this->input->post('kodepos',TRUE),
+		    'Foto' => $foto
+		);
+
+		return $this->db->insert('tpraktek', $data);
+    }
 
 	public function GetAllPraktik($where = "") {
 		$data = $this->db->query('select * from tpraktek');

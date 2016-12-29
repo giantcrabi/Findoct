@@ -33,48 +33,14 @@
         <li><a>Dokter<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="#">Lihat Dokter</a></li>
-          <li><a href="#">Add Dokter</a></li>
+          <li><a href="<?php echo base_url('doctors/add'); ?>">Add Dokter</a></li>
         </ul></li>
         <li><a>Tempat Praktek<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="#">Lihat Tempat Praktek</a></li>
-          <li><a href="#">Add Tempat Praktek</a></li>
+          <li><a href="<?php echo base_url('tempatpraktik/add'); ?>">Add Tempat Praktek</a></li>
         </ul></li>
         <li><a href="#">Assign Jadwal Praktek</a></li>
-        <!-- <?php
-        if ($_SESSION['role'] == 1 || $_SESSION['role'] == 2) {
-          foreach ($usedmpg as $rowmpg) {
-            echo
-            "<li><a> ".$rowmpg->masterprivilegegroupname." <span class=\"fa fa-chevron-down\"></span></a>";
-            if ($rowmpg->masterprivilegegroupid == 1) {
-              echo "<ul class=\"nav child_menu\">";
-            }
-            foreach ($usedpg as $rowpg) {
-              if($rowpg->masterprivilegegroupid == $rowmpg->masterprivilegegroupid) {
-                if ($rowpg->masterprivilegegroupid == 1) {
-                  echo
-                  "<li><a> ".$rowpg->privilegegroupname." <span class=\"fa fa-chevron-down\"></span></a>";
-                }
-                echo "<ul class=\"nav child_menu\" style=\"display: none\">";
-                foreach ($listdp as $rowdp) {
-                  if($rowdp->idprivilegegroup == $rowpg->idprivilegegroup) {
-                    echo "<li><a href=".base_url($rowdp->pageurl).">".$rowdp->menuname."</a></li>";
-                  }
-                }
-                echo "</ul></li>";
-              }
-            }
-            if ($rowmpg->masterprivilegegroupid == 1) {
-              echo "</ul></li>";
-            }
-          }
-        }
-        elseif ($_SESSION['role'] == 3) {
-          foreach ($listdp as $rowdp) {
-            echo "<li><a href=".base_url($rowdp->pageurl).">".$rowdp->menuname."</a></li>";
-          }
-        }
-        ?> -->
       </ul>
     </div>
   </div>

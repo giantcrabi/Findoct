@@ -5,8 +5,26 @@ class Doctors_model extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-                $this->load->database();
+        $this->load->database();
 	}
+
+	public function post_new_doctor()
+    {
+    	$foto = $this->input->post('foto',TRUE);
+
+    	if ($foto == "") {
+    		$foto = "profileblank.png";
+    	}
+
+    	$data = array(
+		    'Email' => $this->input->post('email',TRUE),
+		    'Nama' => $this->input->post('name',TRUE),
+        	'Gelar' => $this->input->post('gelar',TRUE),
+		    'Foto' => $foto
+		);
+
+		return $this->db->insert('dokter', $data);
+    }
 
 	public function GetAllDoctors($where = "") {
 		$data = $this->db->query('select * from dokter');
