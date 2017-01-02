@@ -130,9 +130,7 @@
 					                  array.push({ nama: DestNama[j], gelar: DestGelar[j], foto: DestFoto[j], idt: DestID[j], tempat: DestTempat[j], buka: open, from: origins[i], to: destinations[j], distance: element.distance.text, duration: element.duration.text });
 					              }
 					          }
-					        //console.log(array);
 					        array.sort(compareDist);
-					        //console.log(array);
 					        array.sort(compareOpen);
 					        console.log(array);
 					        for (var i = 0; i < array.length; i++) {

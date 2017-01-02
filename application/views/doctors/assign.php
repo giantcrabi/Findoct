@@ -48,35 +48,70 @@
 
         <div id="isijadwal">
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="senin">Senin (from - to)</label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <input type="text" id="senin" name="senin" class="form-control">
+            <label class="col-md-2 col-sm-2 col-xs-12">Senin </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="seninopen">From </label>
+                <input type="text" id="seninopen" name="seninopen" class="form-control">
+              </span>
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="seninclosed">To </label>
+                <input type="text" id="seninclosed" name="seninclosed" class="form-control">
+              </span>
             </div>
-          </div><br /><br /><br />
+          </div><br /><br /><br /><br />
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="selasa">Selasa (from - to)</label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <input type="text" id="selasa" name="selasa" class="form-control">
+            <label class="col-md-2 col-sm-2 col-xs-12">Selasa </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="selasaopen">From </label>
+                <input type="text" id="selasaopen" name="selasaopen" class="form-control">
+              </span>
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="selasaclosed">To </label>
+                <input type="text" id="selasaclosed" name="selasaclosed" class="form-control">
+              </span>
             </div>
-          </div><br /><br /><br />
+          </div><br /><br /><br /><br />
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="rabu">Rabu (from - to)</label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <input type="text" id="rabu" name="rabu" class="form-control">
+            <label class="col-md-2 col-sm-2 col-xs-12">Rabu </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="rabuopen">From </label>
+                <input type="text" id="rabuopen" name="rabuopen" class="form-control">
+              </span>
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="rabuclosed">To </label>
+                <input type="text" id="rabuclosed" name="rabuclosed" class="form-control">
+              </span>
             </div>
-          </div><br /><br /><br />
+          </div><br /><br /><br /><br />
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="kamis">Kamis (from - to)</label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <input type="text" id="kamis" name="kamis" class="form-control">
+            <label class="col-md-2 col-sm-2 col-xs-12">Kamis </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="kamisopen">From </label>
+                <input type="text" id="kamisopen" name="kamisopen" class="form-control">
+              </span>
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="kamisclosed">To </label>
+                <input type="text" id="kamisclosed" name="kamisclosed" class="form-control">
+              </span>
             </div>
-          </div><br /><br /><br />
+          </div><br /><br /><br /><br />
           <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="jumat">Jumat (from - to)</label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
-              <input type="text" id="jumat" name="jumat" class="form-control">
+            <label class="col-md-2 col-sm-2 col-xs-12">Jumat </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="jumatopen">From </label>
+                <input type="text" id="jumatopen" name="jumatopen" class="form-control">
+              </span>
+              <span class="col-md-2 col-sm-2 col-xs-12">
+                <label class="control-label col-md-1 col-sm-1 col-xs-12" for="jumatclosed">To </label>
+                <input type="text" id="jumatclosed" name="jumatclosed" class="form-control">
+              </span>
             </div>
-          </div><br /><br /><br />
+          </div><br /><br /><br /><br />
           <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="add"></label>
             <div class="col-md-5 col-sm-5 col-xs-12">
@@ -132,11 +167,26 @@
 
   function addRow(idtpraktek,inputvalue) {
     if(value != "") {
-      var senin = ($("#senin").val() == "") ? "-" : $("#senin").val();
-      var selasa = ($("#selasa").val() == "") ? "-" : $("#selasa").val();
-      var rabu = ($("#rabu").val() == "") ? "-" : $("#rabu").val();
-      var kamis = ($("#kamis").val() == "") ? "-" : $("#kamis").val();
-      var jumat = ($("#jumat").val() == "") ? "-" : $("#jumat").val();
+      var senin = "-";
+      if($("#seninopen").val() != "" && $("#seninclosed").val() != "") {
+        senin = $("#seninopen").val() + " - " + $("#seninclosed").val();
+      }
+      var selasa = "-";
+      if($("#selasaopen").val() != "" && $("#selasaclosed").val() != "") {
+        selasa = $("#selasaopen").val() + " - " + $("#selasaclosed").val();
+      }
+      var rabu = "-";
+      if($("#rabuopen").val() != "" && $("#rabuclosed").val() != "") {
+        rabu = $("#rabuopen").val() + " - " + $("#rabuclosed").val();
+      }
+      var kamis = "-";
+      if($("#kamisopen").val() != "" && $("#kamisclosed").val() != "") {
+        kamis = $("#kamisopen").val() + " - " + $("#kamisclosed").val();
+      }
+      var jumat = "-";
+      if($("#jumatopen").val() != "" && $("#jumatclosed").val() != "") {
+        jumat = $("#jumatopen").val() + " - " + $("#jumatclosed").val();
+      }
       table.row.add( [
         idtpraktek,
         inputvalue,
