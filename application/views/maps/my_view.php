@@ -72,7 +72,12 @@
 		<div id="directionsDiv"></div>
 	</div>
 	<script>
-		function compare(a,b) {
+		//var currentdate = new Date();
+		var currentdate = new Date('2017','0','2','11','10');
+		console.log(currentdate);
+		var days = ['SENIN', 'SELASA', 'RABU', 'KAMIS', 'JUMAT', 'SABTU', 'MINGGU'];
+
+		function compareDist(a,b) {
 		  if (a.distance > b.distance)
 		    return 1;
 		  if (a.distance < b.distance)
@@ -80,7 +85,11 @@
 		  return 0;
 		}
 
-		function GoogleMapDistance(YourLatLong,DestLatLong,DestID,DestNama,DestGelar,DestFoto,DestTempat,item)
+		function compareOpen(a,b) {
+		  return (a.buka === b.buka)? 0 : a.buka? -1 : 1;
+		}
+
+		function GoogleMapDistance(YourLatLong,DestLatLong,DestID,DestNama,DestGelar,DestFoto,DestTempat,DestOpen,DestClosed,item)
 			{
 			    var service = new google.maps.DistanceMatrixService();
 			    service.getDistanceMatrix(
@@ -107,20 +116,30 @@
 					              var results = response.rows[i].elements;
 					              for (var j = 0; j < results.length; j++)
 					              {
+					              	  var open = false;
+					              	  if(DestOpen[j] != '-' && DestClosed[j] != '-') {
+					              	  	var openhour = Date.parseExact(DestOpen[j],"HH:mm").getHours();
+					              	  	var closedhour = Date.parseExact(DestClosed[j],"HH:mm").getHours();
+					              	  	var nowhour = currentdate.getHours();
+					              	  	if(nowhour > openhour && nowhour <= closedhour) {
+					              	  		open = true;
+					              	  	}
+					              	  }
+					              	  
 					                  var element = results[j];
-					                  array.push({ nama: DestNama[j], gelar: DestGelar[j], foto: DestFoto[j], idt: DestID[j], tempat: DestTempat[j], from: origins[i], to: destinations[j], distance: element.distance.text, duration: element.duration.text });
+					                  array.push({ nama: DestNama[j], gelar: DestGelar[j], foto: DestFoto[j], idt: DestID[j], tempat: DestTempat[j], buka: open, from: origins[i], to: destinations[j], distance: element.distance.text, duration: element.duration.text });
 					              }
 					          }
-					        array.sort(compare);
+					        //console.log(array);
+					        array.sort(compareDist);
+					        //console.log(array);
+					        array.sort(compareOpen);
+					        console.log(array);
 					        for (var i = 0; i < array.length; i++) {
 					        	outputDiv.innerHTML += '<div class="col-md-6">' + "<a href=" + '"' + "<?php echo base_url('maps'); ?>" + "/" + array[i].gelar + "/" + array[i].nama + "/" + array[i].idt + '"' + ">" + 
 					        	'<div class="card"><div class="card-image"><img src="http://localhost/Findoct/uploads/doctors/' +
 					        	array[i].foto + '" alt="foto" width="100%" height="auto" /><span class="card-title styleclass">' + array[i].nama + ', ' + array[i].gelar + '</span></div><div class="card-content"><p>' + 
-					        	array[i].tempat + ': ' + array[i].distance + '&nbsp; (<i>' + array[i].duration + '</i>)</p></div></div></a></div>'
-
-					        	//"<tr><a href=" + '"' + "<?php echo base_url('maps'); ?>" + "/" + array[i].gelar + "/" + array[i].nama + "/" + array[i].idt + '"' + ">" 
-					        	//+ array[i].nama + ', ' + array[i].gelar + ', ' + array[i].to + ': ' + array[i].distance + "&nbsp; (<i>" + array[i].duration + "</i>)" + '</a></tr>';
-					        	
+					        	array[i].tempat + ': ' + array[i].distance + '&nbsp; (<i>' + array[i].duration + '</i>)</p></div></div></a></div>'    	
 					        }
 				        }
 				    }
@@ -135,7 +154,32 @@
 			var DestGelar = [];
 			var DestFoto = [];
 			var DestTempat = [];
+			var DestOpen = [];
+			var DestClosed = [];
 			<?php foreach ($places as $places_item){ ?>
+				var dayname = days[currentdate.getDay() - 1];
+				var jadwal = '-';
+				if (dayname == 'SENIN') {
+					jadwal = <?php echo '"'.$places_item['SENIN'].'"'?>;
+				} else if (dayname == 'SELASA') {
+					jadwal = <?php echo '"'.$places_item['SELASA'].'"'?>;
+				} else if (dayname == 'RABU') {
+					jadwal = <?php echo '"'.$places_item['RABU'].'"'?>;
+				} else if (dayname == 'KAMIS') {
+					jadwal = <?php echo '"'.$places_item['KAMIS'].'"'?>;
+				} else if (dayname == 'JUMAT') {
+					jadwal = <?php echo '"'.$places_item['JUMAT'].'"'?>;
+				}
+
+				if (jadwal != '-') {
+					var temp = jadwal.split(" - ");
+					DestOpen.push(temp[0]);
+					DestClosed.push(temp[1]);
+				} else {
+					DestOpen.push('-');
+					DestClosed.push('-');
+				}
+
 				DestID.push(<?php echo '"'.$places_item['IDT'].'"'?>);
 				DestNama.push(<?php echo '"'.$places_item['EMAIL'].'"'?>);
 				DestGelar.push(<?php echo '"'.$places_item['GELAR'].'"'?>);
@@ -150,6 +194,6 @@
 				<?php }
 			} ?>
 				    
-			GoogleMapDistance(YourLatLong,DestLatLong1,DestID,DestNama,DestGelar,DestFoto,DestTempat,"listdokter");
+			GoogleMapDistance(YourLatLong,DestLatLong1,DestID,DestNama,DestGelar,DestFoto,DestTempat,DestOpen,DestClosed,"listdokter");
 		});
 	</script>

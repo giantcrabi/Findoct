@@ -111,8 +111,29 @@ class TempatPraktik extends CI_Controller {
                 }
         }
 
+        public function view()
+        {
+            if ($this->session->userdata('user') === NULL)
+            {
+                redirect('login');
+            }
+
+            $data['sidebar'] = 'templates/Sidebar';
+            $data['title'] = 'FINDOCT';
+            $data['subtitle'] = 'Tabel Tempat Praktek';
+            $data['list'] = $this->Tempat_Praktik_model->list_all_tpraktek();
+            $this->load->view('templates/headeradmin', $data);
+            $this->load->view('praktek/view', $data);
+            $this->load->view('templates/footeradmin');
+        }
+
         public function add()
         {
+            if ($this->session->userdata('user') === NULL)
+            {
+                redirect('login');
+            }
+
             $this->form_validation->set_rules('name', 'Nama Tempat Praktek', 'required|trim');
             $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
             $this->form_validation->set_rules('kota', 'Kota', 'required|trim');
@@ -130,5 +151,46 @@ class TempatPraktik extends CI_Controller {
             $this->load->view('templates/headeradmin', $data);
             $this->load->view('praktek/add', $data);
             $this->load->view('templates/footeradmin');
+        }
+
+        public function edit($id)
+        {
+            if ($this->session->userdata('user') === NULL)
+            {
+                redirect('login');
+            }
+
+            $this->form_validation->set_rules('name', 'Nama Tempat Praktek', 'required|trim');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+            $this->form_validation->set_rules('kota', 'Kota', 'required|trim');
+            $this->form_validation->set_rules('provinsi', 'Provinsi', 'required|trim');
+            $this->form_validation->set_rules('kodepos', 'Kode Pos', 'trim');
+            $this->form_validation->set_rules('foto', 'foto', 'trim');
+
+            if ($this->form_validation->run() === FALSE) {
+                $data['values'] = $this->Tempat_Praktik_model->get_tpraktek($id);
+                $data['sidebar'] = 'templates/Sidebar';
+                $data['title'] = 'FINDOCT';
+                $data['subtitle'] = 'Edit Tempat Praktek';
+                $this->load->view('templates/headeradmin', $data);
+                $this->load->view('praktek/edit', $data);
+                $this->load->view('templates/footeradmin');
+            }
+            else
+            {
+                $this->Tempat_Praktik_model->update_tpraktek($id);
+                redirect('tempatpraktik/view');
+            }
+        }
+
+        public function delete($id)
+        {
+            if ($this->session->userdata('user') === NULL)
+            {
+                redirect('login');
+            }
+            
+            $this->Tempat_Praktik_model->delete_tpraktek($id);
+            redirect('tempatpraktik/view');
         }
 }

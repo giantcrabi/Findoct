@@ -38,7 +38,7 @@ class Maps_model extends CI_Model {
 		}
 
 		public function get_tpraktek($doctors){
-				$this->db->select('TPRAKTEK.IDTPRAKTEK AS IDT,EMAIL,NAMATPRAKTEK,ALAMAT,KOTA,PROVINSI,KODEPOS',FALSE);
+				$this->db->select('TPRAKTEK.IDTPRAKTEK AS IDT,EMAIL,NAMATPRAKTEK,ALAMAT,KOTA,PROVINSI,KODEPOS,SENIN,SELASA,RABU,KAMIS,JUMAT',FALSE);
 				$this->db->from('TPRAKTEK');
 		        $this->db->join('DOKTER_TPRAKTEK','TPRAKTEK.IDTPraktek = DOKTER_TPRAKTEK.IDTPraktek','inner');
 		        $where = "TPRAKTEK.`IDTPRAKTEK` IN(SELECT IDTPRAKTEK FROM DOKTER_TPRAKTEK WHERE EMAIL IN ('";

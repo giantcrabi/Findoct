@@ -28,6 +28,42 @@ class Tempat_Praktik_model extends CI_Model
 		return $this->db->insert('tpraktek', $data);
     }
 
+    public function list_all_tpraktek()
+    {
+        return $this->db->get('tpraktek')->result();
+    }
+
+    public function get_tpraktek($id)
+    {
+        return $this->db->get_where('tpraktek', array('IDTPraktek' => $id))->row();
+    }
+
+    public function update_tpraktek($id)
+    {
+        $foto = $this->input->post('foto',TRUE);
+
+    	if ($foto == "") {
+    		$foto = "noimg.jpg";
+    	}
+
+    	$data = array(
+		    'NamaTPraktek' => $this->input->post('name',TRUE),
+		    'Alamat' => $this->input->post('alamat',TRUE),
+        	'Kota' => $this->input->post('kota',TRUE),
+        	'Provinsi' => $this->input->post('provinsi',TRUE),
+        	'KodePos' => $this->input->post('kodepos',TRUE),
+		    'Foto' => $foto
+		);
+        $this->db->where('IDTPraktek',$id);
+        return $this->db->update('tpraktek',$data);
+    }
+
+    public function delete_tpraktek($id)
+    {
+        $this->db->where('IDTPraktek',$id);
+        return $this->db->delete('tpraktek');
+    }
+
 	public function GetAllPraktik($where = "") {
 		$data = $this->db->query('select * from tpraktek');
 		return $data->result_array();

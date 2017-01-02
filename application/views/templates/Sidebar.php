@@ -6,17 +6,12 @@
   <div class="profile_info" style="padding-top:17px">
     <span>Selamat datang,</span>
     <h2><strong>
-      <!-- <?php
+      <?php
       if ($_SESSION['name'] != NULL)
       {
         echo $_SESSION['name'];
-        ?>
-        <br>
-        <?php
-        echo $namainstitusi;
       }
-      ?> -->
-      Gian
+      ?>
     </strong></h2>
     </div>
   </div>
@@ -32,15 +27,15 @@
       <ul class="nav side-menu">
         <li><a>Dokter<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="#">Lihat Dokter</a></li>
+          <li><a href="<?php echo base_url('doctors/view'); ?>">Lihat Dokter</a></li>
           <li><a href="<?php echo base_url('doctors/add'); ?>">Add Dokter</a></li>
         </ul></li>
         <li><a>Tempat Praktek<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="#">Lihat Tempat Praktek</a></li>
+          <li><a href="<?php echo base_url('tempatpraktik/view'); ?>">Lihat Tempat Praktek</a></li>
           <li><a href="<?php echo base_url('tempatpraktik/add'); ?>">Add Tempat Praktek</a></li>
         </ul></li>
-        <li><a href="#">Assign Jadwal Praktek</a></li>
+        <li><a href="<?php echo base_url('doctors/assign'); ?>">Assign Jadwal Praktek</a></li>
       </ul>
     </div>
   </div>
@@ -57,13 +52,14 @@
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <img src="<?php echo base_url('uploads/user.png'); ?>" alt="" style="float: left">
-            <!-- <?php
+            <h5 style="color: white; float: left">
+            <?php
             if ($_SESSION['name'] != NULL)
             {
               echo $_SESSION['name'];
             }
-            ?> -->
-            <h5 style="color: white; float: left">Gian</h5>
+            ?>
+            </h5>
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">

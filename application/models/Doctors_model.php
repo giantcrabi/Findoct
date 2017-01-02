@@ -26,6 +26,74 @@ class Doctors_model extends CI_Model
 		return $this->db->insert('dokter', $data);
     }
 
+    public function list_all_doctor()
+    {
+        return $this->db->get('dokter')->result();
+    }
+
+    public function get_doctor($id)
+    {
+        return $this->db->get_where('dokter', array('Email' => $id))->row();
+    }
+
+    public function update_doctor($id)
+    {
+        $foto = $this->input->post('foto',TRUE);
+
+    	if ($foto == "") {
+    		$foto = "profileblank.png";
+    	}
+
+    	$data = array(
+		    'Nama' => $this->input->post('name',TRUE),
+        	'Gelar' => $this->input->post('gelar',TRUE),
+		    'Foto' => $foto
+		);
+        $this->db->where('Email',$id);
+        return $this->db->update('dokter',$data);
+    }
+
+    public function delete_doctor($id)
+    {
+        $this->db->where('Email',$id);
+        return $this->db->delete('dokter');
+    }
+
+    public function post_new_jadwal()
+    {
+        $data = array(
+            'Email' => $this->input->post('email',TRUE),
+            'IDTPraktek' => $this->input->post('idtpraktek',TRUE),
+            'Senin' => $this->input->post('senin',TRUE),
+            'Selasa' => $this->input->post('selasa',TRUE),
+            'Rabu' => $this->input->post('rabu',TRUE),
+            'Kamis' => $this->input->post('kamis',TRUE),
+            'Jumat' => $this->input->post('jumat',TRUE)
+        );
+
+        return $this->db->insert('dokter_tpraktek', $data);
+    }
+    public function get_jadwal()
+    {
+        $email = $this->input->post('email',TRUE);
+        return $this->db->get_where('dokter_tpraktek', array('Email' => $email))->result();
+    }
+    public function delete_jadwal()
+    {
+        $email = $this->input->post('email',TRUE);
+        $idtpraktek = $this->input->post('idtpraktek',TRUE);
+
+        $this->db->where('Email',$email);
+        $this->db->where('IDTPraktek',$idtpraktek);
+        return $this->db->delete('dokter_tpraktek');
+    }
+    public function check_jadwal()
+    {
+        $email = $this->input->post('email',TRUE);
+        $idtpraktek = $this->input->post('idtpraktek',TRUE);
+        return $this->db->get_where('dokter_tpraktek', array('Email' => $email, 'IDTPraktek' => $idtpraktek))->row();
+    }
+
 	public function GetAllDoctors($where = "") {
 		$data = $this->db->query('select * from dokter');
 		return $data->result_array();
