@@ -5,14 +5,8 @@ class Doctors extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->library('pagination');
-
-                // $this->load->helper('url');
-                // $this->load->helper('form');
-                // // $this->load->library('form_validation');
                 $this->load->model('Doctors_model');
                 $this->load->model('Tempat_Praktik_model');
-                // $this->load->model('praktek_model');
-                // $this->load->model('mymodel');
         }
 
         public function index($where = "")
@@ -22,13 +16,11 @@ class Doctors extends CI_Controller {
                 $data['data_gelar'] = $this->Doctors_model->GetAllGelar();
 
                 $jumlah= $this->Doctors_model->jumlah();
- 
                 
                 $config['base_url'] = base_url().'Doctors/index';
                 $config['total_rows'] = $jumlah;
                 $config['per_page'] = 4;
                 $config['uri_segment'] = 3;
-                //$config['first_url'] = base_url().'Doctors/index/1';
                 $config['full_tag_open'] = "<ul class='pagination'>";
                 $config['full_tag_close'] ="</ul>";
                 $config['num_tag_open'] = '<li>';
@@ -70,21 +62,17 @@ class Doctors extends CI_Controller {
         }
 
         public function filter($where){
-                // $widget_id = str_replace(array('['?']'), '',$where);
                 $replace  = str_replace("?","",$where);
                 $replace2  = str_replace("%20"," ",$replace);
-                // var_dump($widget_id);
                 $where1 = array('Gelar' => $replace);
 
                 $jumlah= $this->Doctors_model->jumlahSpesifik(" where Gelar = '$replace2'");
-               // echo $jumlah;
                 $data['data_gelar'] = $this->Doctors_model->GetAllGelar();
                 
                 $config['base_url'] = base_url().'Doctors/index';
                 $config['total_rows'] = $jumlah;
                 $config['per_page'] = 4;
                 $config['uri_segment'] = 3;
-                //$config['first_url'] = base_url().'Doctors/index/1';
                 $config['full_tag_open'] = "<ul class='pagination'>";
                 $config['full_tag_close'] ="</ul>";
                 $config['num_tag_open'] = '<li>';
@@ -115,19 +103,14 @@ class Doctors extends CI_Controller {
 
         public function cari()
         {
-            // $data['dokter_page'] = $this->Doctors_model->caridata();
-             
-
                 $data['data_gelar'] = $this->Doctors_model->GetAllGelar();
 
                 $jumlah= $this->Doctors_model->jumlah();
- 
-                
+
                 $config['base_url'] = base_url().'Doctors/index';
                 $config['total_rows'] = $jumlah;
                 $config['per_page'] = 4;
                 $config['uri_segment'] = 3;
-                //$config['first_url'] = base_url().'Doctors/index/1';
                 $config['full_tag_open'] = "<ul class='pagination'>";
                 $config['full_tag_close'] ="</ul>";
                 $config['num_tag_open'] = '<li>';
@@ -142,26 +125,23 @@ class Doctors extends CI_Controller {
                 $config['first_tagl_close'] = "</li>";
                 $config['last_tag_open'] = "<li>";
                 $config['last_tagl_close'] = "</li>";
-                
+
                 $dari = $this->uri->segment(3,0);
                 $data['dokter_page'] = $this->Doctors_model->caridata($config['per_page'],$dari);
                 if($data['dokter_page']<=$config['per_page']){$this->pagination->initialize($config);}
 
                 if($data['dokter_page']==null) {
-                echo "<script>
-                alert('Maaf data yang anda cari tidak ada atau keywordnya salah');
-                window.location.href='index';
-                </script>";
-
+                    echo "<script>
+                    alert('Maaf data yang anda cari tidak ada atau keywordnya salah');
+                    window.location.href='index';
+                    </script>";
                 }
                 else {
-                $data['title'] = 'Hasil Pencarian Dokter';
-                $this->load->view('templates/headmain', $data);
-                $this->load->view('templates/header');
-                $this->load->view('doctors/index', $data);
-                $this->load->view('templates/footer');
-                // $this->load->view('doctors/index',$data); 
-
+                    $data['title'] = 'Hasil Pencarian Dokter';
+                    $this->load->view('templates/headmain', $data);
+                    $this->load->view('templates/header');
+                    $this->load->view('doctors/index', $data);
+                    $this->load->view('templates/footer');
                 }
         }
 

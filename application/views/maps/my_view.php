@@ -134,9 +134,13 @@
 					        array.sort(compareOpen);
 					        console.log(array);
 					        for (var i = 0; i < array.length; i++) {
+					        	var status = "";
+					        	if (!array[i].buka) {
+					        		status = "(CLOSED)"
+					        	}
 					        	outputDiv.innerHTML += '<div class="col-md-6">' + "<a href=" + '"' + "<?php echo base_url('maps'); ?>" + "/" + array[i].gelar + "/" + array[i].nama + "/" + array[i].idt + '"' + ">" + 
 					        	'<div class="card"><div class="card-image"><img src="http://localhost/Findoct/uploads/doctors/' +
-					        	array[i].foto + '" alt="foto" width="100%" height="auto" /><span class="card-title styleclass">' + array[i].nama + ', ' + array[i].gelar + '</span></div><div class="card-content"><p>' + 
+					        	array[i].foto + '" alt="foto" width="100%" height="auto" /><span class="card-title styleclass">' + array[i].nama + ', ' + array[i].gelar + ' ' + status + '</span></div><div class="card-content"><p>' + 
 					        	array[i].tempat + ': ' + array[i].distance + '&nbsp; (<i>' + array[i].duration + '</i>)</p></div></div></a></div>'    	
 					        }
 				        }
